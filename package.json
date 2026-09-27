@@ -1,0 +1,32 @@
+{
+  "name": "agrosaathi",
+  "private": true,
+  "packageManager": "npm@10.9.9",
+  "workspaces": [
+    "apps/*",
+    "web",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=@agrosaathi/web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "db:generate": "prisma generate --schema=packages/db/prisma/schema.prisma",
+    "db:push": "prisma db push --schema=packages/db/prisma/schema.prisma",
+    "db:migrate": "prisma migrate dev --schema=packages/db/prisma/schema.prisma --name init",
+    "db:migrate:deploy": "prisma migrate deploy --schema=packages/db/prisma/schema.prisma",
+    "dev:web": "turbo run dev --filter=@agrosaathi/product-web",
+    "build:scaffold": "turbo run build --filter=@agrosaathi/web",
+    "build:product": "DISABLE_PWA=true npm run build --workspace=@agrosaathi/product-web"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.15",
+    "prisma": "^5.17.0",
+    "turbo": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}
